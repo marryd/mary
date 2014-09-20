@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace MaryConsoleApp
@@ -14,13 +15,21 @@ namespace MaryConsoleApp
 
             var function = new ConsoleKeyInfo();
 
-            do
+            while (true)
             {
                 function = Console.ReadKey();
 
-                Console.WriteLine(string.Format("\nYou pressed '{0}' button.", function.KeyChar));
+                if (function.Key == ConsoleKey.Escape)
+                {
+                    Console.WriteLine("\n.....BYE, BYE......");
+                    Thread.Sleep(3000);
+                    return;
+                }
 
-            }while(function.Key != ConsoleKey.Escape);
+                Console.WriteLine(string.Format("\nYou pressed '{0}' button.", function.KeyChar));
+            }
+
+         
         }
 
         private static void showStartMenu()
